@@ -1,26 +1,14 @@
-# Use Node.js to build the frontend assets
-FROM node:14 AS build-stage
-
-# Set working directory
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the frontend source code
-COPY ./ ./
-
-# Build the frontend
-RUN npm run build
-
 # Use a lightweight image like nginx to serve the frontend
 FROM nginx:1.19
 
-# Copy the built assets from the build stage to the nginx directory
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Set the working directory in the image
+WORKDIR /usr/share/nginx/html
+
+# Copy the HTML, JS, and CSS files to the nginx directory
+COPY ./html ./html
+COPY ./js ./js
+COPY ./css ./css
+COPY ./index.html .
 
 # Expose port 80 (nginx default)
 EXPOSE 80
