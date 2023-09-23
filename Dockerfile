@@ -2,7 +2,7 @@
 FROM nginx:1.19
 
 # Set the working directory in the image
-WORKDIR /usr/share/nginx
+WORKDIR /usr/share/nginx/html
 
 # Copy the HTML, JS, and CSS files to the nginx directory
 COPY ./html ./html
