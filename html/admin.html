@@ -13,6 +13,7 @@
             src="https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
             crossorigin="anonymous" defer></script>
+    <script src="../js/config.js" defer></script>
     <script src="../js/admin.js" defer></script>
 </head>
 
@@ -76,7 +77,6 @@
 
     <!-- MyUser Table -->
     <div class="mt-4" id="users-section">
-        <button class="btn btn-success mb-3" id="add-user-btn">Add New User</button>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -84,24 +84,11 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <!-- Add other necessary fields -->
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <!-- Each row represents a user -->
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john.doe@email.com</td>
-                <!-- Add other necessary fields -->
-                <td>
-                    <button class="btn btn-info btn-sm">Edit</button>
-                    <button class="btn btn-danger btn-sm">Delete</button>
-                </td>
-            </tr>
-            <!-- Repeat for other users -->
             </tbody>
         </table>
     </div>
