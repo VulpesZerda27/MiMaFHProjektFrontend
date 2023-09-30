@@ -3,10 +3,10 @@
     "id": 1,
     "title": "Achtsam Morden",
     "author": "Karsten Dusse",
-    "description": "Mordselegant: die achtsam veredelte Ausgabe im Hosentaschenformat ...",
+    "description": " Mordselegant: die achtsam veredelte Ausgabe im Hosentaschenformat\n\n                    Björn Diemel wird von seiner Frau gezwungen, ein Achtsamkeits-Seminar zu besuchen, um seine Ehe ins Reine zu bringen, sich als guter Vater zu beweisen und die etwas aus den Fugen geratene Work-Life-Balance wieder herzustellen. Denn Björn ist ein erfolgreicher Anwalt und hat dementsprechend sehr wenig Zeit für seine Familie. Der Kurs trägt tatsächlich Früchte und Björn kann das Gelernte sogar in seinen Job integrieren, allerdings nicht ganz auf die erwartete Weise. Denn als sein Mandant, ein brutaler und mehr als schuldiger Großkrimineller, beginnt, ihm ernstliche Probleme zu bereiten, bringt er ihn einfach um - und zwar nach allen Regeln der Achtsamkeit.\n\n                    Achtsam morden ist die Geschichte eines bewussten und entschleunigten Mordes, der längst überfällige Schulterschluss zwischen Achtsamkeitsratgeber und Krimi.",
     "price": "14,00 €",
     "category": "Krimis",
-    "image": "Achtsam_Morden_Krimi.PNG"
+    "image": "../images/Achtsam_Morden_Krimi.PNG"
   },
   {
     "id": 2,
@@ -15,6 +15,6 @@
     "description": "Björn Diemel hat die Prinzipien der Achtsamkeit erlernt und mit ihrer Hilfe sein Leben verbessert. Er hat den stressigen Job gekündigt und sich selbstständig gemacht...",
     "price": 14.00,
     "category": "Krimis",
-    "image": "Achtsam_Morden_Krimi.PNG"
+    "image": "../images/Achtsam_Morden_DasKindInMir_Krimi.PNG"
   }
 ]
