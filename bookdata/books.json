@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Achtsam Morden",
+    "author": "Karsten Dusse",
+    "description": "Mordselegant: die achtsam veredelte Ausgabe im Hosentaschenformat ...",
+    "price": "14,00 €",
+    "category": "Krimis",
+    "image": "Achtsam_Morden_Krimi.PNG"
+  },
+  {
+    "id": 2,
+    "title": "Das Kind in mir will achtsam morden",
+    "author": "Karsten Dusse",
+    "description": "Björn Diemel hat die Prinzipien der Achtsamkeit erlernt und mit ihrer Hilfe sein Leben verbessert. Er hat den stressigen Job gekündigt und sich selbstständig gemacht...",
+    "price": 14.00,
+    "category": "Krimis",
+    "image": "Achtsam_Morden_Krimi.PNG"
+  }
+]
