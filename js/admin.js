@@ -65,12 +65,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (btn.textContent === 'Edit') {
                 // Store original values
-                const originalData = {
-                    firstName: row.cells[1].textContent,
-                    lastName: row.cells[2].textContent,
-                    email: row.cells[3].textContent
-                    // Add other fields as necessary
-                };
+                const originalData = {};
+                Array.from(row.cells).forEach((cell, index) => {
+                    // Skipping the ID and Action columns
+                    if (index !== 0 && index !== row.cells.length - 1) {
+                        const headerName = cell.getAttribute('data-header-name'); // Assuming each cell has a data-header-name attribute.
+                        originalData[headerName] = cell.textContent;
+                    }
+                });
                 btn.setAttribute('data-original-data', JSON.stringify(originalData));
                 // Convert row data to editable fields
                 Array.from(row.cells).forEach((cell, index) => {
@@ -89,15 +91,19 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 // Fetch data from editable fields
                 const userId = btn.getAttribute('data-id');
-                const updatedData = {
-                    firstName: row.cells[1].querySelector('input').value,
-                    lastName: row.cells[2].querySelector('input').value,
-                    email: row.cells[3].querySelector('input').value
-                };
+                const updatedData = {};
+                Array.from(row.cells).forEach((cell) => {
+                    const headerName = cell.getAttribute('data-header-name');
+                    if (headerName) { // Checks if headerName is not null or undefined
+                        updatedData[headerName] = cell.querySelector('input').value;
+                    }
+                });
+
+                console.log(updatedData);
 
                 updateEntity(entityType ,userId, updatedData)
-                    .then(user => {
-                        console.log('User updated successfully!', user);
+                    .then(entity => {
+                        console.log(`${entityType.charAt(0).toUpperCase() + entityType.slice(1)} updated successfully!`, entity);
                         // Convert editable fields back to normal
                         Array.from(row.cells).forEach((cell, index) => {
                             if (index !== 0 && index !== row.cells.length - 1) {
@@ -110,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         btn.textContent = 'Edit';
                     })
                     .catch(error => {
-                        console.error('Error updating user:', error);
+                        console.error(`Error updating ${entityType}:`, error);
                     });
             }
         }
@@ -121,10 +127,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Restore the original values from the Edit button's data attribute
             const originalData = JSON.parse(editButton.getAttribute('data-original-data'));
-            row.cells[1].textContent = originalData.firstName;
-            row.cells[2].textContent = originalData.lastName;
-            row.cells[3].textContent = originalData.email;
-            // Add other fields as necessary
+
+            let columnIndex = 1; // Assuming that data starts from the second column (index 1)
+            for (const key in originalData) {
+                if (originalData.hasOwnProperty(key)) {
+                    row.cells[columnIndex].textContent = originalData[key];
+                    columnIndex++;
+                }
+            }
 
             editButton.textContent = 'Edit';
 

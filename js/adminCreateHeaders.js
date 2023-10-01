@@ -1,9 +1,9 @@
 function createUserHeaders() {
     return `
                 <th id="idHeader" data-id="user">ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th data-header-name="firstName">First Name</th>
+                <th data-header-name="lastName">Last Name</th>
+                <th data-header-name="email">Email</th>
                 <th>Actions</th>
     `;
 }
