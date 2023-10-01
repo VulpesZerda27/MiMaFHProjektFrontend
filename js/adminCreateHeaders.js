@@ -1,22 +1,23 @@
 function createUserHeaders() {
     return `
-                <th id="idHeader" data-id="user">ID</th>
+                <th id="idHeader" entity-type="user">ID</th>
                 <th data-header-name="firstName">First Name</th>
                 <th data-header-name="lastName">Last Name</th>
                 <th data-header-name="email">Email</th>
                 <th>Actions</th>
+                <th>Admin rights</th>
     `;
 }
 
 function createProductHeaders() {
     return `
                 <th id="idHeader" data-id="product">ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Category</th>
-                <th>Author</th>
+                <th data-header-name="name">Name</th>
+                <th data-header-name="description">Description</th>
+                <th data-header-name="price">Price</th>
+                <th data-header-name="quantity">Quantity</th>
+                <th data-header-name="category">Category</th>
+                <th data-header-name="author">Author</th>
                 <th>Actions</th>
     `;
 }

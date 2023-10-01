@@ -7,7 +7,41 @@ const ENTITY_CONFIG = {
 document.addEventListener("DOMContentLoaded", function() {
     // Event delegation for dynamically generated edit buttons
     document.querySelector('#data-section tbody').addEventListener('click', function(e) {
-        let entityType = document.querySelector('#idHeader').getAttribute('data-id');
+        let entityType = document.querySelector('#idHeader').getAttribute('entity-type');
+
+        if (e.target.classList.contains('admin-rights-btn')) {
+            const action = e.target.getAttribute('data-action');
+            const isConfirmed = confirm(`Are you sure you want to ${action} Admin rights?`);
+
+            if (isConfirmed) {
+                const userId = e.target.getAttribute('data-id');
+
+                // Get the user data from the 'Edit' button's data-original-data attribute
+                const editButton = document.querySelector(`#edit-button[data-id="${userId}"]`);
+                const userDataString = editButton.getAttribute('data-original-data');
+                const user = JSON.parse(userDataString);
+                let updatedRoles = [];
+
+                if (action === 'revoke') {
+                    // Revoke admin rights
+                    updatedRoles = user.roles.filter(role => role !== 'ADMIN');
+                } else if (action === 'grant') {
+                    // Grant admin rights
+                    updatedRoles = [...user.roles, 'ADMIN'];
+                }
+
+                user.roles = updatedRoles;
+
+                updateEntity('user', userId, user)
+                    .then(updatedUser => {
+                        // Update the row with the updated user data.
+                        fetchUser();
+                    })
+                    .catch(error => {
+                        console.error("Error updating admin rights:", error);
+                    });
+            }
+        }
 
         if (e.target.classList.contains('status-btn')) {
             const btn = e.target;
@@ -60,79 +94,72 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (e.target.classList.contains('edit-btn')) {
             const btn = e.target;
-            const userId = btn.getAttribute('data-id');
             const row = btn.closest('tr');
 
             if (btn.textContent === 'Edit') {
-                // Store original values
-                const originalData = {};
+                // Convert static fields to editable fields (e.g., <input> elements)
                 Array.from(row.cells).forEach((cell, index) => {
-                    // Skipping the ID and Action columns
-                    if (index !== 0 && index !== row.cells.length - 1) {
-                        const headerName = cell.getAttribute('data-header-name'); // Assuming each cell has a data-header-name attribute.
-                        originalData[headerName] = cell.textContent;
+                    if (index !== 0 && !cell.innerHTML.includes('button')) {
+                        const inputValue = cell.textContent.trim();
+                        cell.innerHTML = `<input type="text" value="${inputValue}" class="form-control">`;
                     }
                 });
-                btn.setAttribute('data-original-data', JSON.stringify(originalData));
-                // Convert row data to editable fields
-                Array.from(row.cells).forEach((cell, index) => {
-                    // Skipping the ID and Action columns
-                    if (index !== 0 && index !== row.cells.length - 1) {
-                        const inputValue = cell.textContent;
-                        cell.innerHTML = `<input type="text" value="${inputValue}" />`;
-                    }
-                });
-                // Add the Cancel button
-                const cancelButton = document.createElement('button');
-                cancelButton.classList.add('btn', 'btn-secondary', 'btn-sm', 'cancel-btn');
-                cancelButton.textContent = 'Cancel';
-                btn.after(cancelButton);
+
+                // Change the Edit button to Confirm and show Cancel button
                 btn.textContent = 'Confirm';
-            } else {
-                // Fetch data from editable fields
-                const userId = btn.getAttribute('data-id');
+                const cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Cancel';
+                cancelButton.className = 'btn btn-secondary btn-sm ml-2 cancel-btn';
+                btn.parentNode.appendChild(cancelButton);
+            } else if (btn.textContent === 'Confirm') {
+                // Get edited values and send them to the backend for updating
                 const updatedData = {};
-                Array.from(row.cells).forEach((cell) => {
-                    const headerName = cell.getAttribute('data-header-name');
-                    if (headerName) { // Checks if headerName is not null or undefined
+                Array.from(row.cells).forEach((cell, index) => {
+                    if (index !== 0 && index !== row.cells.length - 1) {
+                        const headerName = document.querySelectorAll('#data-section th')[index].getAttribute('data-header-name');
                         updatedData[headerName] = cell.querySelector('input').value;
                     }
                 });
 
-                console.log(updatedData);
-
-                updateEntity(entityType ,userId, updatedData)
+                // Send the update request (assuming you have a function like updateEntity already)
+                const entityId = btn.getAttribute('data-id');
+                updateEntity(entityType, entityId, updatedData)
                     .then(entity => {
-                        console.log(`${entityType.charAt(0).toUpperCase() + entityType.slice(1)} updated successfully!`, entity);
-                        // Convert editable fields back to normal
+                        // Convert editable fields back to static ones
                         Array.from(row.cells).forEach((cell, index) => {
                             if (index !== 0 && index !== row.cells.length - 1) {
                                 cell.textContent = cell.querySelector('input').value;
                             }
                         });
-
-                        // Remove the Cancel button
-                        row.querySelector('.cancel-btn').remove();
-                        btn.textContent = 'Edit';
+                        btn.textContent = 'Edit'; // Change the button text back to Edit
+                        row.querySelector('.cancel-btn').remove(); // Remove the Cancel button
                     })
                     .catch(error => {
                         console.error(`Error updating ${entityType}:`, error);
                     });
             }
         }
+
         if (e.target.classList.contains('cancel-btn')) {
             const btn = e.target;
-            const editButton = btn.previousElementSibling;
             const row = btn.closest('tr');
+            const editButton = row.querySelector('#edit-button');
 
             // Restore the original values from the Edit button's data attribute
             const originalData = JSON.parse(editButton.getAttribute('data-original-data'));
 
-            let columnIndex = 1; // Assuming that data starts from the second column (index 1)
+            console.log(originalData);
+
+            let headers = Array.from(document.querySelectorAll('#data-section th'));
+
             for (const key in originalData) {
                 if (originalData.hasOwnProperty(key)) {
-                    row.cells[columnIndex].textContent = originalData[key];
-                    columnIndex++;
+                    // Find the header that corresponds to this key
+                    const matchingHeader = headers.find(header => header.getAttribute('data-header-name') === key);
+                    if (matchingHeader) {
+                        const columnIndex = headers.indexOf(matchingHeader);
+                        row.cells[columnIndex].textContent = originalData[key];
+                    }
                 }
             }
 

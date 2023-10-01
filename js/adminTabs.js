@@ -16,8 +16,7 @@ document.querySelector('.nav-tabs').addEventListener('click', function(e) {
                     document.querySelector('#data-section tr').innerHTML = headers;
                 }
 
-                const createRowsFunction = window[`create${tab.charAt(0).toUpperCase() + tab.slice(1)}Rows`];
-                if (typeof createRowsFunction === 'function') createRowsFunction();
+
             } else {
                 document.getElementById(`${tab}-tab`).classList.remove('active');
             }
