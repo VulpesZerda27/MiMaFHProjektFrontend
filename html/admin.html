@@ -13,8 +13,12 @@
             src="https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
             crossorigin="anonymous" defer></script>
-    <script src="../js/config.js" defer></script>
+    <script src="../js/adminConfig.js" defer></script>
+    <script src="../js/adminCreateHeaders.js" defer></script>
+    <script src="../js/adminCreateRow.js" defer></script>
+    <script src="../js/adminFetch.js" defer></script>
     <script src="../js/admin.js" defer></script>
+    <script src="../js/adminTabs.js" defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-success">
@@ -62,29 +66,25 @@
     <!-- Navigation for different entities -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" href="#" id="users-tab">Users</a>
+            <a class="nav-link active" href="#" id="user-tab">Users</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" id="products-tab">Products</a>
+            <a class="nav-link" href="#" id="product-tab">Products</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" id="categories-tab">Categories</a>
+            <a class="nav-link" href="#" id="category-tab">Categories</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" id="authors-tab">Authors</a>
+            <a class="nav-link" href="#" id="author-tab">Authors</a>
         </li>
     </ul>
 
     <!-- MyUser Table -->
-    <div class="mt-4" id="users-section">
+    <div class="mt-4" id="data-section">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Actions</th>
+
             </tr>
             </thead>
             <tbody>
@@ -92,42 +92,7 @@
             </tbody>
         </table>
     </div>
-
-    <!-- ... (Your previous HTML code) ... -->
-
-    <!-- Modal for Editing and Adding Users -->
-    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Edit User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form for editing/adding -->
-                    <form id="userForm">
-                        <input type="hidden" id="userId">
-                        <div class="mb-3">
-                            <label for="userFirstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="userFirstName">
-                        </div>
-                        <div class="mb-3">
-                            <label for="userLastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="userLastName">
-                        </div>
-                        <!-- You can add more fields as needed -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveUserBtn">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
-
 
 <!-- Footer -->
 <footer class="text-center text-white bg-secondary bottom mt-auto" style="background-color: #3f51b5">
