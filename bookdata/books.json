@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Achtsam Morden",
+    "author": "Karsten Dusse",
+    "description": " Mordselegant: die achtsam veredelte Ausgabe im Hosentaschenformat\n\n                    Björn Diemel wird von seiner Frau gezwungen, ein Achtsamkeits-Seminar zu besuchen, um seine Ehe ins Reine zu bringen, sich als guter Vater zu beweisen und die etwas aus den Fugen geratene Work-Life-Balance wieder herzustellen. Denn Björn ist ein erfolgreicher Anwalt und hat dementsprechend sehr wenig Zeit für seine Familie. Der Kurs trägt tatsächlich Früchte und Björn kann das Gelernte sogar in seinen Job integrieren, allerdings nicht ganz auf die erwartete Weise. Denn als sein Mandant, ein brutaler und mehr als schuldiger Großkrimineller, beginnt, ihm ernstliche Probleme zu bereiten, bringt er ihn einfach um - und zwar nach allen Regeln der Achtsamkeit.\n\n                    Achtsam morden ist die Geschichte eines bewussten und entschleunigten Mordes, der längst überfällige Schulterschluss zwischen Achtsamkeitsratgeber und Krimi.",
+    "price": "14,00 €",
+    "category": "Krimis",
+    "image": "../images/Achtsam_Morden_Krimi.PNG"
+  },
+  {
+    "id": 2,
+    "title": "Das Kind in mir will achtsam morden",
+    "author": "Karsten Dusse",
+    "description": "Björn Diemel hat die Prinzipien der Achtsamkeit erlernt und mit ihrer Hilfe sein Leben verbessert. Er hat den stressigen Job gekündigt und sich selbstständig gemacht...",
+    "price": "15,50 €",
+    "category": "Krimis",
+    "image": "../images/Achtsam_Morden_DasKindInMir_Krimi.PNG"
+  },
+  {
+    "id": 3,
+    "title": "Erzählende Affen",
+    "author": "Samira El Ouassil",
+    "description": "Eine Geschichte kann die Welt retten – oder sie zerstören.\n\n\nEine starke Geschichte kann die Welt retten – oder sie zerstören. Sie kann Wahlen entscheiden, Menschenleben retten, aber auch Kriege auslösen und Ungerechtigkeit zementieren. Samira El Ouassil und Friedemann Karig verfolgen diese ambivalente Wirkungsmacht anhand wichtiger Narrative von der Antike bis zur Gegenwart. Und sie zeigen, welche Erzählungen uns heute gefährden und warum wir neue benötigen. Wie gelingt es, den Klimawandel so zu erzählen, dass er zum Handeln drängt? Aus welchen Überlegenheitsmythen entstehen Rassismus und Antisemitismus? Mit welchen Storys manipulierte Trump seine Anhänger, und weshalb verfangen die Lügen der Querdenker und Verschwörungsideologen? Was erzählen wir seit jeher über uns selbst ‒ als Deutsche, als Europäer, als Humanist:innen, über unsere Republik? Gibt es Alternativen dazu? Wie könnte eine wirkungsmächtige neuen Erzählung der Aufklärung aussehen? Geschichten sind ein maßgeblicher Teil unserer Sozialisation. Sie durchdringen Politik, Medien und Kultur, lehren uns, unterhalten uns, verführen uns, beeinflussen unsere Wirklichkeitswahrnehmung - vom griechischen Drama bis zur Netflix-Serie.\n",
+    "price": "16,00 €",
+    "category": "Sachbücher",
+    "image": "../images/ErzaehlendeAffen_Sachbuch.PNG"
+  },
+  {
+    "id": 4,
+    "title": "Kein Stress Kochbuch",
+    "author": "EMF",
+    "description": "Heiß ersehnt und endlich da: Das erste Kochbuch zum erfolgreichen YouTube-Kanal kein Stress kochen!\n\nVon der Community sehnsüchtig erwartet, von Mr. kSk brandneu geliefert! „Selber kochen ist Ehrensache und die Küche ist eine Spielwiese, die es zu erkunden gilt“, sagt der beliebte Österreicher und präsentiert neben Lieblingen aus seiner Heimatküche auch internationale Foodkreationen.\n\n\n    69 geniale Rezepte, die alle begeistern – von Kochmuffeln bis hin zu erfahrenen Hobbyköch*innen\n\n    Die Magie der Kartoffel, was ein Brioche-Teig alles kann, und die besten Rippchen – mit Mr. kSk traut sich jede*r an den Herd!\n\n    Tolles Extra: mit QR-Codes zu unterhaltsamen Geschichten und Tipps rund um die Gerichte\n\n\n\nKein Stress! Kochen soll Spaß machen, einfach sein und man kann immer dazu lernen. Lass dich inspirieren von Mr. kSks Rezepten: Selbst gemachter Leberkäse, Spätzle Rosso, Österreichische Enchiladas, Ananas-Tarte-Tatin und vieles mehr. Weg mit der Suppenwürze! Deine Ehre steht auf dem Spiel!\n",
+    "price": "25,50 €",
+    "category": "Sachbücher",
+    "image": "../images/KeinStressKocbuch_Sachbuch.PNG"
+  },
+  {
+    "id": 5,
+    "title": "Max und Moritz",
+    "author": "Wilhelm Busch",
+    "description": "'Dieses war der erste Streich, doch der zweite folgt sogleich …' Als ,Max und Moritz' im Jahre 1865 veröffentlicht wurde, erahnte noch keiner die Erfolgsgeschichte des Bilderbuchs. Heute gehören die sieben Streiche der bösen Buben zu den Meisterwerken von Wilhelm Busch. Wer erinnert sich nicht an die haarsträubenden Geschichten, wie z.B. diejenige vom armen Onkel Fritz, der mit Maikäfern geplagt wird. Anlässlich des 150. Geburtstages von Max und Moritz erscheint der Kinderbuch-Klassiker mit neuer Innengestaltung und größeren Bildern.",
+    "price": "8,90 €",
+    "category": "Kinderbücher",
+    "image": "../images/MaxUndMoritz_Kinderbuch.PNG"
+  },
+  {
+    "id": 6,
+    "title": "Struwwelpeter",
+    "author": "Heinrich Hoffmann",
+    "description": "Wer kennt nicht die Verse über den Zappelphilipp, Hans Guck-in-die -Luft und den Suppenkaspar? Der berühmteste deutsche Kinderbuchklassiker liegt hier in einem Nachdruck der Frankfurter Originalausgabe vor.",
+    "price": "11,00 €",
+    "category": "Kinderbücher",
+    "image": "../images/Struwwelpeter_Kinderbuch.PNG"
+  }
+]

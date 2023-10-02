@@ -9,8 +9,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="/css/bootstrap.css" rel="stylesheet">
     <style>
+        body {
+            margin-left: 1cm; /* Set the left margin to 3 centimeters */
+            margin-right: 1cm;
+        }
+
         .product {
-            margin-bottom: 200px; /* Adjust the value as needed to control the spacing */
+            margin-bottom: 200px;
+        }
+
+        .table-image {
+            width: 100px; /* Set the desired width of the images */
+            height: auto; /* Maintain aspect ratio */
         }
     </style>
 </head>
@@ -26,18 +36,8 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-info" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="products.html">
-                        Produkte
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="productsDropdown">
-                        <a class="dropdown-item" href="./html/crimestories.html">Krimis</a>
-                        <a class="dropdown-item" href="./html/childrensbooks.html">Kinderbücher</a>
-                        <a class="dropdown-item" href="./html/nonfiction.html">Sachbücher</a>
-                    </div>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link text-info" href="productfilter.html">Produktfilter</a>
+                    <a class="nav-link text-info" href="./html/products.html">Produkte</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-info" href="./html/signup.html">Registrierung</a>
@@ -45,55 +45,66 @@
                 <li class="nav-item">
                     <a class="nav-link text-info" href="./html/login.html">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="./html/admin.html">Admin</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<p>
-    Willkommen bei BookoMaT! Kaufen Sie Bücher nur vom Feinsten!
-</p>
+<h2>Willkommen bei BookoMaT! Kaufen Sie Bücher nur vom Feinsten!</h2>
 
-<!-- product list view -->
-<section class="container mt-5">
-    <h2 class="text-center text-info">Featured Products</h2>
-    <div class="product-list">
-        <div class="product">
-            <a href="./html/achtsamMordenDetails.html">
-                <img src="images/Achtsam_Morden_Krimi.PNG" alt="Book Cover">
-            </a>
-            <h2>Achtsam Morden</h2>
-            <p>Author: Karsten Dusse</p>
-            <p><strong>Beschreibung:</strong></p>
-            <p>
-                Mordselegant: die achtsam veredelte Ausgabe im Hosentaschenformat
+<div class="mt-4" id="users-section">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Buch</th>
+            <th>Titel</th>
+            <th>Author</th>
+            <th>Preis</th>
+            <th>Kategorie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Each row represents a book -->
+        </tbody>
+    </table>
+</div>
 
-                Björn Diemel wird von seiner Frau gezwungen, ein Achtsamkeits-Seminar zu besuchen, um seine Ehe ins Reine zu bringen, sich als guter Vater zu beweisen und die etwas aus den Fugen geratene Work-Life-Balance wieder herzustellen. Denn Björn ist ein erfolgreicher Anwalt und hat dementsprechend sehr wenig Zeit für seine Familie. Der Kurs trägt tatsächlich Früchte und Björn kann das Gelernte sogar in seinen Job integrieren, allerdings nicht ganz auf die erwartete Weise. Denn als sein Mandant, ein brutaler und mehr als schuldiger Großkrimineller, beginnt, ihm ernstliche Probleme zu bereiten, bringt er ihn einfach um - und zwar nach allen Regeln der Achtsamkeit.
+<script>
+    // fetch data from JSON file
+    async function fetchBooks() {
+        const response = await fetch('./bookdata/books.json');
+        const data = await response.json();
+        return data;
+    }
 
-                Achtsam morden ist die Geschichte eines bewussten und entschleunigten Mordes, der längst überfällige Schulterschluss zwischen Achtsamkeitsratgeber und Krimi.
-            </p>
-            <p>14,00 €</p>
-            <p>Kategorie: Krimis</p>
-            <button>Zum Warenkorb hinzufügen</button>
-        </div>
-        <div class="product">
-            <a href="./html/achtsamMordenKindDetails.html">
-                <img src="images/Achtsam_Morden_DasKindInMir_Krimi.PNG" alt="Book Cover">
-            </a>
-            <h2>Das Kind in mir will achtsam morden</h2>
-            <p>Author: Karsten Dusse</p>
-            <p><strong>Beschreibung:</strong></p>
-            <p>
-                Björn Diemel ist zurück - und mordet ganzheitlicher als je zuvor
+    // populate the table with book data
+    async function populateTable() {
+        const books = await fetchBooks();
+        const tbody = document.querySelector('tbody');
 
-                Björn Diemel hat die Prinzipien der Achtsamkeit erlernt, und mit ihrer Hilfe sein Leben verbessert. Er hat den stressigen Job gekündigt und sich selbstständig gemacht. Er verbringt mehr Zeit mit seiner Tochter und streitet sich in der Regel liebevoller mit seiner Frau. Ach ja, und nebenbei führt er noch ganz entspannt zwei Mafia-Clans, weil er den Chef des einen ermordet und den des anderen im Keller eines Kindergartens eingekerkert hat. Warum nur kann Björn das alles nicht genießen? Warum verliert er ständig die Beherrschung? Hat er das Morden einfach satt? Ganz so einfach ist es nicht. Sein Therapeut Joschka Breitner bringt ihn endlich auf die richtige Spur: Es liegt an Björns innerem Kind!
-            </p>
-            <p>15,50 €</p>
-            <p>Kategorie: Krimis</p>
-            <button>Zum Warenkorb hinzufügen</button>
-        </div>
-    </div>
-</section>
+        books.forEach(book => {
+            const row = document.createElement('tr');
+            // Create a link to the centralized details page with the book ID as a query parameter
+            row.innerHTML = `
+                    <td>${book.id}</td>
+                    <td><a href="./html/booksinglepage.html?id=${book.id}"><img class="table-image" src="images/${book.image}" alt="${book.title}"></a></td>
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.price}</td>
+                    <td>${book.category}</td>
+                `;
+            tbody.appendChild(row);
+        });
+    }
+
+    // Call populateTable function when the DOM is loaded
+    document.addEventListener('DOMContentLoaded', populateTable);
+</script>
+
 
 
     <!-- Footer -->

@@ -16,7 +16,7 @@ $("#login-button").on("click", function (event) {
             console.log("Logged in", data);
             if (data.accessToken) {
                 localStorage.setItem("accessToken", data.accessToken);
-                window.location.href = "/";
+//                window.location.href = "/";
         }},
         error: function (error) {
             console.error("Error logging in", error);
