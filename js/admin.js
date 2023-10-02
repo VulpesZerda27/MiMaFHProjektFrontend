@@ -15,18 +15,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const newData = {};
             Array.from(row.cells).forEach((cell, index) => {
-                if (index !== 0 && index !== row.cells.length - 1) {
+                if (index !== 0 && !cell.innerHTML.includes('button')) {
                     const headerName = document.querySelectorAll('#data-section th')[index].getAttribute('data-header-name');
-                    newData[headerName] = cell.querySelector('input').value;
+                    // Check if the cell contains an input element
+                    console.log(headerName);
+                    const inputElement = cell.querySelector('input');
+                    if (inputElement) {
+                        newData[headerName] = inputElement.value;
+                    }
+
+                    // Check if the cell contains a select element
+                    const selectElement = cell.querySelector('select');
+                    if (selectElement) {
+                        newData[headerName] = selectElement.options[selectElement.selectedIndex].text;
+                        console.log(selectElement.options[selectElement.selectedIndex].text)
+                    }
                 }
             });
 
-            console.log(newData);
-
             const createEntity = window[`create${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
             const fetchEntities = window[`fetch${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
-
-            console.log(`create${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`);
 
             createEntity(newData)
                 .then(entity => {
@@ -125,14 +133,24 @@ document.addEventListener("DOMContentLoaded", function() {
             const btn = e.target;
             const row = btn.closest('tr');
 
-            console.log(row);
-
             if (btn.textContent === 'Edit') {
                 // Convert static fields to editable fields (e.g., <input> elements)
                 Array.from(row.cells).forEach((cell, index) => {
                     if (index !== 0 && !cell.innerHTML.includes('button')) {
+                        const headerName = document.querySelectorAll('#data-section th')[index].getAttribute('data-header-name');
+
+                        if(headerName == 'category'){
+                            cell.innerHTML = `<select class="category-edit-select"> </select>`;
+                            populateCategoryDropdown('.category-edit-select');
+                        }
+                        else if(headerName == 'author'){
+                            cell.innerHTML =`<select class="author-edit-select"> </select>`;
+                            populateAuthorDropdown('.author-edit-select');
+                        }
+                        else{
                         const inputValue = cell.textContent.trim();
                         cell.innerHTML = `<input type="text" value="${inputValue}" class="form-control">`;
+                    }
                     }
                 });
 
@@ -146,10 +164,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Get edited values and send them to the backend for updating
                 const updatedData = {};
                 Array.from(row.cells).forEach((cell, index) => {
-                    console.log(cell);
-                    if (index !== 0 && index !== row.cells.length - 1 && index !== row.cells.length - 2) {
+                    if (index !== 0 && !cell.innerHTML.includes('button')) {
                         const headerName = document.querySelectorAll('#data-section th')[index].getAttribute('data-header-name');
-                        updatedData[headerName] = cell.querySelector('input').value;
+                        // Check if the cell contains an input element
+                        console.log(headerName);
+                        const inputElement = cell.querySelector('input');
+                        if (inputElement) {
+                            updatedData[headerName] = inputElement.value;
+                        }
+
+                        // Check if the cell contains a select element
+                        const selectElement = cell.querySelector('select');
+                        if (selectElement) {
+                            updatedData[headerName] = selectElement.options[selectElement.selectedIndex].text;
+                            console.log(selectElement.options[selectElement.selectedIndex].text)
+                        }
                     }
                 });
 
@@ -158,11 +187,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 updateEntity(entityType, entityId, updatedData)
                     .then(entity => {
                         // Convert editable fields back to static ones
-                        Array.from(row.cells).forEach((cell, index) => {
-                            if (index !== 0 && index !== row.cells.length - 1 && index !== row.cells.length - 2) {
-                                cell.textContent = cell.querySelector('input').value;
-                            }
-                        });
+
+                        const fetchEntities = window[`fetch${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
+                        fetchEntities();
+
                         btn.textContent = 'Edit'; // Change the button text back to Edit
                         row.querySelector('.cancel-btn').remove(); // Remove the Cancel button
                     })
@@ -177,23 +205,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const row = btn.closest('tr');
             const editButton = row.querySelector('#edit-button');
 
-            // Restore the original values from the Edit button's data attribute
-            const originalData = JSON.parse(editButton.getAttribute('data-original-data'));
-
-            console.log(originalData);
-
-            let headers = Array.from(document.querySelectorAll('#data-section th'));
-
-            for (const key in originalData) {
-                if (originalData.hasOwnProperty(key)) {
-                    // Find the header that corresponds to this key
-                    const matchingHeader = headers.find(header => header.getAttribute('data-header-name') === key);
-                    if (matchingHeader) {
-                        const columnIndex = headers.indexOf(matchingHeader);
-                        row.cells[columnIndex].textContent = originalData[key];
-                    }
-                }
-            }
+            const fetchEntities = window[`fetch${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
+            fetchEntities();
 
             editButton.textContent = 'Edit';
 

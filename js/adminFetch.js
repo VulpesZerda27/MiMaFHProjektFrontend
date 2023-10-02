@@ -55,6 +55,9 @@ function fetchProduct() {
 
             const productRows = data.map(createProductRow).join('');
             document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', productRows);
+
+            populateCategoryDropdown(`.category-select`);
+            populateAuthorDropdown('.author-select');
         })
         .catch(error => {
             console.error('Error fetching products:', error);

@@ -55,8 +55,8 @@ function createProductRow(product) {
             <td>${product.description}</td>
             <td>${product.price}</td>
             <td>${product.quantity}</td>
-            <td>${product.category}</td>
-            <td>${product.author}</td>
+            <td>${product.category.name}</td> <!-- Assuming category is an object with a name property -->
+            <td>${product.author.firstName} ${product.author.lastName}</td> <!-- Assuming author is an object with firstName and lastName properties -->
             <td>
                 <button id="edit-button" class="btn btn-info btn-sm edit-btn" data-id="${product.id}" data-original-data='${escapedData}'>Edit</button>
                 <button id="delete-button" class="btn btn-danger btn-sm delete-btn" data-id="${product.id}">Delete</button>
@@ -73,8 +73,16 @@ function createProductInputRow() {
             <td><input type="text" placeholder="Description"></td>
             <td><input type="number" placeholder="Price" step="0.01"></td>
             <td><input type="number" placeholder="Quantity"></td>
-            <td><input type="text" placeholder="Category"></td>
-            <td><input type="text" placeholder="Author"></td>
+            <td>
+                <select class="category-select">
+                    <!-- options will be dynamically populated -->
+                </select>
+            </td>
+            <td>
+                <select class="author-select">
+                    <!-- options will be dynamically populated -->
+                </select>
+            </td>
             <td><button class="btn btn-primary submit-btn">Submit</button></td>
         </tr>
     `;
@@ -128,4 +136,34 @@ function createAuthorInputRow() {
             <td><button class="btn btn-primary submit-btn">Submit</button></td>
         </tr>
     `;
+}
+
+function populateCategoryDropdown(identifier) {
+    fetch(window.CATEGORY_ENDPOINT, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(categories => {
+            const categoryDropdown = document.querySelector(identifier);
+            categoryDropdown.innerHTML = categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join('');
+        });
+}
+
+function populateAuthorDropdown(identifier) {
+    fetch(window.AUTHOR_ENDPOINT, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(authors => {
+            const authorDropdown = document.querySelector(identifier);
+            authorDropdown.innerHTML = authors.map(author => `<option value="${author.id}">${author.firstName} ${author.lastName}</option>`).join('');
+        });
 }
