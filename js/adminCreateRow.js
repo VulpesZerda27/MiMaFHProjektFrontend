@@ -60,6 +60,7 @@ function createProductRow(product) {
             <td>
                 <button id="edit-button" class="btn btn-info btn-sm edit-btn" data-id="${product.id}" data-original-data='${escapedData}'>Edit</button>
                 <button id="delete-button" class="btn btn-danger btn-sm delete-btn" data-id="${product.id}">Delete</button>
+                <button id="image-button" class="btn btn-secondary btn-sm image-btn" data-id="${product.id}">Bild</button>
             </td>
         </tr>
     `;

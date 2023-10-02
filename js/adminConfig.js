@@ -4,3 +4,4 @@ window.USER_ENDPOINT = window.BACKEND_URL + "/admin/user";
 window.PRODUCT_ENDPOINT = window.BACKEND_URL + "/admin/product"
 window.CATEGORY_ENDPOINT = window.BACKEND_URL + "/admin/category"
 window.AUTHOR_ENDPOINT = window.BACKEND_URL + "/admin/bookAuthor"
+window.IMAGE_ENDPOINT = window.BACKEND_URL + "/admin/image"

@@ -213,6 +213,16 @@ document.addEventListener("DOMContentLoaded", function() {
             // Remove the Cancel button
             btn.remove();
         }
+
+        if (e.target && e.target.classList.contains('image-btn')) {
+            const productId = e.target.getAttribute('data-id');
+            document.querySelector('#imageModal').setAttribute('data-product-id', productId);
+
+            fetchImageForProduct(productId);  // Implement this function to fetch and display image
+
+            const modal = document.getElementById('imageModal');
+            modal.style.display = "block";
+        }
     });
 });
 
@@ -262,5 +272,71 @@ function deleteEntity(entityType, entityId) {
         });
 }
 
+function fetchImageForProduct(productId) {
+    fetch(`${window.BACKEND_URL}/product/image/${productId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const productImage = document.getElementById('productImage');
+            const blobUrl = URL.createObjectURL(blob);
+            productImage.src = blobUrl;
+        })
+        .catch(error => {
+            console.error('Error fetching image:', error);
+        });
+}
+
+function uploadImageForProduct(file) {
+    let productId = document.getElementById('imageModal').getAttribute('data-product-id');
+    const formData = new FormData();
+    formData.append('productImage', file);
+
+    fetch(`${window.IMAGE_ENDPOINT}/${productId}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+        },
+        body: formData
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.querySelector('.close-modal').click();
+            alert("Image uploaded successfully!");
+        })
+        .catch(error => {
+            console.error('Error uploading image:', error);
+        });
+}
+
+// Close the modal
+document.querySelector('.close-modal').addEventListener('click', function() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = "none";
+});
+
+// Image upload handling
+document.getElementById('uploadButton').addEventListener('click', function() {
+    const inputFile = document.getElementById('imageUpload');
+    const file = inputFile.files[0];
+
+    if (file) {
+        // Implement the function to upload the image to the backend
+        uploadImageForProduct(file);
+    }
+});
 
 document.addEventListener("DOMContentLoaded", fetchUser);
