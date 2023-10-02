@@ -1,8 +1,11 @@
 function createProductRow(product) {
-    const escapedData = escapeJsonAttributes(JSON.stringify(product));
     return `
         <tr>
-            <td>${product.id}</td>
+            <td>
+                <div>
+                      <img src="" href="../html/booksinglepage.html?id=${product.id}" id="productImage-${product.id}">
+                </div>
+            </td>
             <td>${product.name}</td>
             <td>${product.description}</td>
             <td>${product.price}</td>

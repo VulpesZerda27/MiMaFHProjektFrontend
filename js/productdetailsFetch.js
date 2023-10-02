@@ -1,95 +1,38 @@
-function fetchProduct() {
-    fetch(window.PRODUCT_ENDPOINT, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+async function fetchProduct() {
+    try {
+        const response = await fetch("http://localhost:8080/product", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
+                'Content-Type': 'application/json'
             }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Fetched Products:", data);  // Log the data for inspection
-
-            // Clear the current rows from tbody
-            document.querySelector('#data-section tbody').innerHTML = '';
-
-            const createProductInputRowHTML = createProductInputRow();
-            document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', createProductInputRowHTML);
-
-            const productRows = data.map(createProductRow).join('');
-            document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', productRows);
-
-            populateCategoryDropdown(`.category-select`);
-            populateAuthorDropdown('.author-select');
-        })
-        .catch(error => {
-            console.error('Error fetching products:', error);
         });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Fetched Products:", data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        throw error;  // Propagate the error to be handled by the caller.
+    }
 }
 
-function fetchCategory() {
-    fetch(window.CATEGORY_ENDPOINT, {
+function populateCategoryDropdown() {
+    fetch("http://localhost:8080/category", {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
             'Content-Type': 'application/json'
         }
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Fetched Categories:", data);  // Log the data for inspection
-
-            // Clear the current rows from tbody
-            document.querySelector('#data-section tbody').innerHTML = '';
-
-            const createCategoryInputRowHTML = createCategoryInputRow();
-            document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', createCategoryInputRowHTML);
-
-            const categoryRows = data.map(createCategoryRow).join('');
-            document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', categoryRows);
-        })
-        .catch(error => {
-            console.error('Error fetching categories:', error);
-        });
-}
-
-function fetchAuthor() {
-    fetch(window.AUTHOR_ENDPOINT, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Fetched Authors:", data);  // Log the data for inspection
-
-            // Clear the current rows from tbody
-            document.querySelector('#data-section tbody').innerHTML = '';
-
-            const createAuthorInputRowHTML = createAuthorInputRow();
-            document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', createAuthorInputRowHTML);
-
-            const authorRows = data.map(createAuthorRow).join('');
-            document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', authorRows);
-        })
-        .catch(error => {
-            console.error('Error fetching authors:', error);
+        .then(response => response.json())
+        .then(categories => {
+            console.log(categories);
+            const categoryDropdown = document.getElementById("categoryDropdownList");
+            categoryDropdown.innerHTML = categories.map(cat => `<li><a value="${cat.id}" class="dropdown-item" href="#">${cat.name}</a></li>`).join('');
         });
 }
