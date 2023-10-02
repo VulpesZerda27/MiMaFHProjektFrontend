@@ -11,7 +11,7 @@ function createUserHeaders() {
 
 function createProductHeaders() {
     return `
-                <th id="idHeader" data-id="product">ID</th>
+                <th id="idHeader" entity-type="product">ID</th>
                 <th data-header-name="name">Name</th>
                 <th data-header-name="description">Description</th>
                 <th data-header-name="price">Price</th>
@@ -24,17 +24,17 @@ function createProductHeaders() {
 
 function createCategoryHeaders() {
     return `
-                <th id="idHeader" data-id="category">ID</th>
-                <th>Name</th>
+                <th id="idHeader" entity-type="category">ID</th>
+                <th data-header-name="name">Name</th>
                 <th>Actions</th>
     `;
 }
 
 function createAuthorHeaders() {
     return `
-                <th id="idHeader" data-id="author">ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th id="idHeader" entity-type="author">ID</th>
+                <th data-header-name="firstName">First Name</th>
+                <th data-header-name="lastName">Last Name</th>
                 <th>Actions</th>
     `;
 }
