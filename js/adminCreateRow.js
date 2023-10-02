@@ -33,6 +33,19 @@ function createUserRow(user) {
     `;
 }
 
+function createUserInputRow() {
+    return `
+        <tr>
+            <td>#</td>
+            <td><input type="text" placeholder="First Name" /></td>
+            <td><input type="text" placeholder="Last Name" /></td>
+            <td><input type="text" placeholder="Email" /></td>
+            <td><button class="btn btn-primary create-btn">Submit</button></td>
+            <td><input type="checkbox" /></td>
+        </tr>
+    `;
+}
+
 function createProductRow(product) {
     const escapedData = escapeJsonAttributes(JSON.stringify(product));
     return `
@@ -52,6 +65,21 @@ function createProductRow(product) {
     `;
 }
 
+function createProductInputRow() {
+    return `
+        <tr>
+            <td>#</td>
+            <td><input type="text" placeholder="Name"></td>
+            <td><input type="text" placeholder="Description"></td>
+            <td><input type="number" placeholder="Price" step="0.01"></td>
+            <td><input type="number" placeholder="Quantity"></td>
+            <td><input type="text" placeholder="Category"></td>
+            <td><input type="text" placeholder="Author"></td>
+            <td><button class="btn btn-primary submit-btn">Submit</button></td>
+        </tr>
+    `;
+}
+
 function createCategoryRow(category) {
     const escapedData = escapeJsonAttributes(JSON.stringify(category));
     return `
@@ -62,6 +90,16 @@ function createCategoryRow(category) {
                 <button id="edit-button" class="btn btn-info btn-sm edit-btn" data-id="${category.id}" data-original-data='${escapedData}'>Edit</button>
                 <button id="delete-button" class="btn btn-danger btn-sm delete-btn" data-id="${category.id}">Delete</button>
             </td>
+        </tr>
+    `;
+}
+
+function createCategoryInputRow() {
+    return `
+        <tr>
+            <td>#</td>
+            <td><input type="text" placeholder="Name"></td>
+            <td><button class="btn btn-primary submit-btn">Submit</button></td>
         </tr>
     `;
 }
@@ -77,6 +115,17 @@ function createAuthorRow(author) {
                 <button id="edit-button" class="btn btn-info btn-sm edit-btn" data-id="${author.id}" data-original-data='${escapedData}'>Edit</button>
                 <button id="delete-button" class="btn btn-danger btn-sm delete-btn" data-id="${author.id}">Delete</button>
             </td>
+        </tr>
+    `;
+}
+
+function createAuthorInputRow() {
+    return `
+        <tr>
+            <td>#</td>
+            <td><input type="text" placeholder="First Name"></td>
+            <td><input type="text" placeholder="Last Name"></td>
+            <td><button class="btn btn-primary submit-btn">Submit</button></td>
         </tr>
     `;
 }

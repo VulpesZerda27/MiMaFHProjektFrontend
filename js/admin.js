@@ -9,6 +9,35 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#data-section tbody').addEventListener('click', function(e) {
         let entityType = document.querySelector('#idHeader').getAttribute('entity-type');
 
+        if (e.target.classList.contains('submit-btn')) {
+            const row = e.target.closest('tr');
+            const entityType = document.querySelector('#idHeader').getAttribute('entity-type');
+
+            const newData = {};
+            Array.from(row.cells).forEach((cell, index) => {
+                if (index !== 0 && index !== row.cells.length - 1) {
+                    const headerName = document.querySelectorAll('#data-section th')[index].getAttribute('data-header-name');
+                    newData[headerName] = cell.querySelector('input').value;
+                }
+            });
+
+            console.log(newData);
+
+            const createEntity = window[`create${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
+            const fetchEntities = window[`fetch${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
+
+            console.log(`create${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`);
+
+            createEntity(newData)
+                .then(entity => {
+                    console.log(`${entityType.charAt(0).toUpperCase() + entityType.slice(1)} added successfully!`, entity);
+                    fetchEntities();
+                })
+                .catch(error => {
+                    console.error(`Error adding ${entityType}:`, error);
+                });
+        }
+
         if (e.target.classList.contains('admin-rights-btn')) {
             const action = e.target.getAttribute('data-action');
             const isConfirmed = confirm(`Are you sure you want to ${action} Admin rights?`);
@@ -96,6 +125,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const btn = e.target;
             const row = btn.closest('tr');
 
+            console.log(row);
+
             if (btn.textContent === 'Edit') {
                 // Convert static fields to editable fields (e.g., <input> elements)
                 Array.from(row.cells).forEach((cell, index) => {
@@ -115,7 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Get edited values and send them to the backend for updating
                 const updatedData = {};
                 Array.from(row.cells).forEach((cell, index) => {
-                    if (index !== 0 && index !== row.cells.length - 1) {
+                    console.log(cell);
+                    if (index !== 0 && index !== row.cells.length - 1 && index !== row.cells.length - 2) {
                         const headerName = document.querySelectorAll('#data-section th')[index].getAttribute('data-header-name');
                         updatedData[headerName] = cell.querySelector('input').value;
                     }
@@ -127,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     .then(entity => {
                         // Convert editable fields back to static ones
                         Array.from(row.cells).forEach((cell, index) => {
-                            if (index !== 0 && index !== row.cells.length - 1) {
+                            if (index !== 0 && index !== row.cells.length - 1 && index !== row.cells.length - 2) {
                                 cell.textContent = cell.querySelector('input').value;
                             }
                         });

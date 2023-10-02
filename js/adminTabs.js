@@ -10,13 +10,14 @@ document.querySelector('.nav-tabs').addEventListener('click', function(e) {
                 const fetchFunction = window[`fetch${tab.charAt(0).toUpperCase() + tab.slice(1)}`];
                 if (typeof fetchFunction === 'function') fetchFunction();
 
+                document.querySelector('#data-section tbody').innerHTML = '';
+
                 const createHeadersFunction = window[`create${tab.charAt(0).toUpperCase() + tab.slice(1)}Headers`];
+
                 if (typeof createHeadersFunction === 'function') {
                     const headers = createHeadersFunction();
                     document.querySelector('#data-section tr').innerHTML = headers;
                 }
-
-
             } else {
                 document.getElementById(`${tab}-tab`).classList.remove('active');
             }
