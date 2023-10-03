@@ -1,7 +1,6 @@
 const ENTITY_CONFIG = {
     user: ['id', 'firstName', 'lastName', 'email', 'action'],
     product: ['id', 'productName', 'price', 'description', 'action'],
-    // ... Add other entities and their attributes here.
 };
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -24,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         newData[headerName] = inputElement.value;
                     }
 
-                    // Check if the cell contains a select element
+                    // Check if cell contains a select element
                     const selectElement = cell.querySelector('select');
                     if (selectElement) {
                         newData[headerName] = selectElement.options[selectElement.selectedIndex].text;
@@ -173,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             updatedData[headerName] = inputElement.value;
                         }
 
-                        // Check if the cell contains a select element
+                        // Check if cell contains a select element
                         const selectElement = cell.querySelector('select');
                         if (selectElement) {
                             updatedData[headerName] = selectElement.options[selectElement.selectedIndex].text;
@@ -334,7 +333,7 @@ document.getElementById('uploadButton').addEventListener('click', function() {
     const file = inputFile.files[0];
 
     if (file) {
-        // Implement the function to upload the image to the backend
+        // function to upload the image to the backend
         uploadImageForProduct(file);
     }
 });

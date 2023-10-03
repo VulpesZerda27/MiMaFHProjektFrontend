@@ -15,10 +15,10 @@ function fetchUser() {
         .then(data => {
             console.log("Fetched Users:", data);  // Log the data for inspection
 
-            // Clear the current rows from tbody
+            // clear current rows from tbody
             document.querySelector('#data-section tbody').innerHTML = '';
 
-            // Now add the create input row
+            // create input row
             const createUserInputRowHTML = createUserInputRow();
             document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', createUserInputRowHTML);
 
@@ -81,7 +81,7 @@ function fetchCategory() {
         .then(data => {
             console.log("Fetched Categories:", data);  // Log the data for inspection
 
-            // Clear the current rows from tbody
+            // clear current rows from tbody
             document.querySelector('#data-section tbody').innerHTML = '';
 
             const createCategoryInputRowHTML = createCategoryInputRow();
@@ -112,7 +112,7 @@ function fetchAuthor() {
         .then(data => {
             console.log("Fetched Authors:", data);  // Log the data for inspection
 
-            // Clear the current rows from tbody
+            // clear current rows from tbody
             document.querySelector('#data-section tbody').innerHTML = '';
 
             const createAuthorInputRowHTML = createAuthorInputRow();

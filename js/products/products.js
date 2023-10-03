@@ -9,15 +9,15 @@ async function filterProductsByCategory(category) {
     }
 }
 
-  //Function to populate the "filtered-products" container with clickable links to detail pages
+//populate "filtered-products" container with clickable links to detail pages
  function populateProducts(products) {
      const filteredProductsContainer = document.querySelector("#filtered-products tbody");
     console.log(products);
       //Clear the container
      filteredProductsContainer.innerHTML = "";
 
-      //Create a list to display the filtered products
-     // Clear the current rows from tbody
+      //create list to display the filtered products
+     // clear current rows from tbody
      document.querySelector('#filtered-products tbody').innerHTML = '';
 
      const productRows = products.map(createProductRow).join('');
@@ -26,13 +26,12 @@ async function filterProductsByCategory(category) {
  }
 
 function fetchImageForProduct(product) {
-    // Start with the base headers (empty in this case, but could have more headers in the future)
     const headers = {};
 
-    // Get the access token from localStorage
+    // get access token from localStorage
     const accessToken = localStorage.getItem("accessToken");
 
-    // If there's an access token, add the Authorization header
+    // if access token, add authorization header
     if (accessToken) {
         headers['Authorization'] = `Bearer ${accessToken}`;
     }
@@ -58,8 +57,7 @@ function fetchImageForProduct(product) {
 }
 
 
-
-  //Event listener for category selection
+//event listener for category selection
  document.querySelector(".dropdown-menu").addEventListener("click", function(event) {
      if (event.target && event.target.matches(".dropdown-item")) {
          const selectedCategory = event.target.textContent;
@@ -73,15 +71,14 @@ function fetchImageForProduct(product) {
  });
 
 function populateCategoryDropdown() {
-    // Start with the base headers
     const headers = {
         'Content-Type': 'application/json'
     };
 
-    // Get the access token from localStorage
+    // get access token from localStorage
     const accessToken = localStorage.getItem("accessToken");
 
-    // If there's an access token, add the Authorization header
+    // if access token, add authorization header
     if (accessToken) {
         headers['Authorization'] = `Bearer ${accessToken}`;
     }

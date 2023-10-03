@@ -2,11 +2,11 @@
 function populateProducts(products) {
     const filteredProductsContainer = document.querySelector("#product-table tbody");
     console.log(products);
-    //Clear the container
+    //clear container
     filteredProductsContainer.innerHTML = "";
 
-    //Create a list to display the filtered products
-    // Clear the current rows from tbody
+    //create list to display filtered products
+    // clear current rows from tbody
     document.querySelector('#product-table tbody').innerHTML = '';
 
     const productRows = products.map(createProductRow).join('');
@@ -15,13 +15,12 @@ function populateProducts(products) {
 }
 
 function fetchImageForProduct(product) {
-    // Start with the base headers (empty in this case, but could have more headers in the future)
     const headers = {};
 
-    // Get the access token from localStorage
+    // get access token from localStorage
     const accessToken = localStorage.getItem("accessToken");
 
-    // If there's an access token, add the Authorization header
+    // if access token, add authorization header
     if (accessToken) {
         headers['Authorization'] = `Bearer ${accessToken}`;
     }
