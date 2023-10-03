@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
 
+            console.log(`create${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`);
             const createEntity = window[`create${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
             const fetchEntities = window[`fetch${entityType.charAt(0).toUpperCase() + entityType.slice(1)}`];
 

@@ -18,15 +18,15 @@ $("#register-button").on("click", function (event) {
             cors: true,
             success: function (data) {
                 console.log("User created successfully", data);
-
+                var loginUser = {
+                    email: $("#email-registration").val(),
+                    password: $("#password-registration").val(),
+                };
                 $.ajax({
                     type: "POST",
                     url: window.BACKEND_URL + "/auth/login",
                     contentType: "application/json",
-                    data: {
-                        password: $("#password-registration").val(),
-                        email: $("#email-registration").val()
-                    },
+                    data: JSON.stringify(loginUser),
                     cors: true,
                     success: function (data) {
                         console.log("Logged in", data);
