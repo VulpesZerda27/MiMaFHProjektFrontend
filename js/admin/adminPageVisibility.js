@@ -1,5 +1,5 @@
 function checkAdminVisibility() {
-    const adminNavItem = document.querySelector(".nav-item a[href='admin.html']").parentNode;
+    const adminNavItem = document.querySelector(".nav-item a[href*='admin.html']").parentNode;
     const token = localStorage.getItem('accessToken');
 
     if (token) {

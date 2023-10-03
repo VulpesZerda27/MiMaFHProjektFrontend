@@ -1,7 +1,7 @@
 //filter products by category
 async function filterProductsByCategory(category) {
     try {
-        const products = await fetchProduct();
+        const products = await fetchProducts();
         return products.filter(product => product.category.name === category);
     } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -10,7 +10,7 @@ async function filterProductsByCategory(category) {
 }
 
   //Function to populate the "filtered-products" container with clickable links to detail pages
- function populateFilteredProducts(products) {
+ function populateProducts(products) {
      const filteredProductsContainer = document.querySelector("#filtered-products tbody");
     console.log(products);
       //Clear the container
@@ -26,11 +26,20 @@ async function filterProductsByCategory(category) {
  }
 
 function fetchImageForProduct(product) {
+    // Start with the base headers (empty in this case, but could have more headers in the future)
+    const headers = {};
+
+    // Get the access token from localStorage
+    const accessToken = localStorage.getItem("accessToken");
+
+    // If there's an access token, add the Authorization header
+    if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+
     fetch(`http://localhost:8080/product/image/${product.id}`, {
         method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
-        }
+        headers: headers
     })
         .then(response => {
             if (!response.ok) {
@@ -49,17 +58,52 @@ function fetchImageForProduct(product) {
 }
 
 
+
   //Event listener for category selection
  document.querySelector(".dropdown-menu").addEventListener("click", function(event) {
      if (event.target && event.target.matches(".dropdown-item")) {
          const selectedCategory = event.target.textContent;
          console.log(selectedCategory);
          filterProductsByCategory(selectedCategory).then(filteredProducts => {
-             populateFilteredProducts(filteredProducts);
+             populateProducts(filteredProducts);
          }).catch(error => {
              console.error("Failed to filter products:", error);
          });
      }
  });
 
-document.addEventListener("DOMContentLoaded", populateCategoryDropdown);
+function populateCategoryDropdown() {
+    // Start with the base headers
+    const headers = {
+        'Content-Type': 'application/json'
+    };
+
+    // Get the access token from localStorage
+    const accessToken = localStorage.getItem("accessToken");
+
+    // If there's an access token, add the Authorization header
+    if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+
+    fetch("http://localhost:8080/category", {
+        method: 'GET',
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(categories => {
+            console.log(categories);
+            const categoryDropdown = document.getElementById("categoryDropdownList");
+            categoryDropdown.innerHTML = categories.map(cat => `<li><a value="${cat.id}" class="dropdown-item" href="#">${cat.name}</a></li>`).join('');
+        });
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    populateCategoryDropdown();
+    fetchProducts().then(products => {
+        populateProducts(products);
+    }).catch(error => {
+        console.error("Failed to populate products:", error);
+    })
+});
