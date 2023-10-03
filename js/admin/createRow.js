@@ -23,6 +23,7 @@ function createUserRow(user) {
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
             <td>${user.email}</td>
+            <td>X</td>
             <td>
                 <button id="edit-button" class="btn btn-info btn-sm edit-btn" data-id="${user.id}" data-original-data='${escapedData}'>Edit</button>
                 <button id="status-button" class="btn btn-warning btn-sm status-btn" data-id="${user.id}" enabled="${user.enabled}">${userStatus}</button>
@@ -40,8 +41,8 @@ function createUserInputRow() {
             <td><input type="text" placeholder="First Name" /></td>
             <td><input type="text" placeholder="Last Name" /></td>
             <td><input type="text" placeholder="Email" /></td>
-            <td><button class="btn btn-primary create-btn">Submit</button></td>
-            <td><input type="checkbox" /></td>
+            <td><input type="text" placeholder="Password" /></td>
+            <td><button class="btn btn-primary submit-btn">Submit</button></td>
         </tr>
     `;
 }

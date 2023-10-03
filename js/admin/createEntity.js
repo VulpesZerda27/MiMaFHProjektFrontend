@@ -1,5 +1,5 @@
 function createUser(data) {
-    fetch(window.USER_ENDPOINT, {
+    fetch(window.BACKEND_URL + "/user", {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,

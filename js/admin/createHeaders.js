@@ -4,6 +4,7 @@ function createUserHeaders() {
                 <th data-header-name="firstName">First Name</th>
                 <th data-header-name="lastName">Last Name</th>
                 <th data-header-name="email">Email</th>
+                <th data-header-name="password">Password</th>
                 <th>Actions</th>
                 <th>Admin rights</th>
     `;
