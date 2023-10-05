@@ -339,4 +339,4 @@ document.getElementById('uploadButton').addEventListener('click', function() {
     }
 });
 
-document.addEventListener("DOMContentLoaded", fetchUser);
+document.addEventListener("DOMContentLoaded", populateUserSectionOfAdminDashboard);
