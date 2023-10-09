@@ -273,7 +273,7 @@ function deleteEntity(entityType, entityId) {
 }
 
 function fetchImageForProduct(productId) {
-    fetch(`${window.BACKEND_URL}/product/image/${productId}`, {
+    fetch(`${window.BACKEND_URL}/image/${productId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
