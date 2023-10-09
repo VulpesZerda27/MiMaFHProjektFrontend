@@ -32,7 +32,7 @@ $("#register-button").on("click", function (event) {
                         console.log("Logged in", data);
                         if (data.accessToken) {
                             localStorage.setItem("accessToken", data.accessToken);
-                            window.location.href = "/";
+     //                       window.location.href = "/";
 
                         }
                     },
