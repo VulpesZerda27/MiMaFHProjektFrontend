@@ -31,7 +31,7 @@ function fetchImageForProduct(product) {
         headers['Authorization'] = `Bearer ${accessToken}`;
     }
 
-    fetch(`http://localhost:8080/product/image/${product.id}`, {
+    fetch(`http://localhost:8080/image/${product.id}`, {
         method: 'GET',
         headers: headers
     })
