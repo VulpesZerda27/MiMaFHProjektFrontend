@@ -1,6 +1,12 @@
 function populateProducts(products) {
     const productRows = products.map(createProductPageRow).join('');
-    products.map(fetchImageForProduct);
+    products.map(product => {
+        fetchImageForProduct(product)
+            .then(blob => {
+                const imgElement = document.getElementById(`productImage-${product.id}`);
+                setSrcOfImgFromBlob(blob, imgElement);
+            })
+    });
     document.querySelector('#product-table tbody').insertAdjacentHTML('beforeend', productRows);
 }
 

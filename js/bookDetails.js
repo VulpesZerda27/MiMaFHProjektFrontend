@@ -1,6 +1,10 @@
 function populateProductDetails(product) {
     const productRow = createProductDetailRow(product);
-    fetchImageForProduct(product);
+    fetchImageForProduct(product)
+        .then(blob => {
+            const imgElement = document.getElementById(`productImage-${product.id}`);
+            setSrcOfImgFromBlob(blob, imgElement);
+        })
     document.querySelector('#data-section tbody').insertAdjacentHTML('beforeend', productRow);
 }
 

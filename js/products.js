@@ -13,7 +13,13 @@ function populateProducts(products) {
     document.querySelector('#filtered-products tbody').innerHTML = '';
 
     const productRows = products.map(createProductPageRow).join('');
-    products.map(fetchImageForProduct);
+    products.map(product => {
+        fetchImageForProduct(product)
+            .then(blob => {
+                const imgElement = document.getElementById(`productImage-${product.id}`);
+                setSrcOfImgFromBlob(blob, imgElement);
+            })
+    });
     document.querySelector('#filtered-products tbody').insertAdjacentHTML('beforeend', productRows);
 }
 

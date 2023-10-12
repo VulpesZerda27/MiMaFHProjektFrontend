@@ -47,18 +47,16 @@ function fetchUser(userID) {
 }
 
 function fetchImageForProduct(product) {
-    makeRequest(`http://localhost:8080/image/${product.id}`, 'GET')
+    return makeRequest(`http://localhost:8080/image/${product.id}`, 'GET')
         .then(response => handleHTTPErrors(response))
         .then(response => response.blob())
-        .then(blob => setSrcOfImgFromBlob(blob, `productImage-${product.id}`))
         .catch(error => {
             console.error('Error fetching image:', error);
         });
 }
 
-function setSrcOfImgFromBlob(blob, elementId){
-    const productImage = document.getElementById(elementId);
+function setSrcOfImgFromBlob(blob, imgElement){
     const blobUrl = URL.createObjectURL(blob);
     console.log(blobUrl);
-    productImage.src = blobUrl;
+    imgElement.src = blobUrl;
 }

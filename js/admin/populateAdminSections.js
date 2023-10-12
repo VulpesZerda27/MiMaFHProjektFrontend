@@ -1,3 +1,23 @@
+function populateEntitySectionOfAdminDashboard(entityType){
+    switch (entityType) {
+        case 'user':
+            populateUserSectionOfAdminDashboard();
+            break;
+        case 'product':
+            populateProductSectionOfAdminDashboard();
+            break;
+        case 'author':
+            populateAuthorSectionOfAdminDashboard();
+            break;
+        case 'category':
+            populateCategorySectionOfAdminDashboard();
+            break;
+        default:
+            console.error(`Unknown entityType: ${entityType}`);
+            return;
+    }
+}
+
 function populateUserSectionOfAdminDashboard() {
     populateUserSectionHeaders();
     fetchUsers()
@@ -69,18 +89,19 @@ function populateAuthorSectionHeaders() {
     document.querySelector('#data-section tr').innerHTML = createAuthorHeaders();
 }
 
-function populateCategoryDropdown() {
+function populateCategoryDropdown(selectId = '.category-select') {
     fetchCategories()
         .then(categories => {
-            const categoryDropdown = document.querySelector('.category-select');
+            console.log(categories);
+            const categoryDropdown = document.querySelector(selectId);
             categoryDropdown.innerHTML = categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join('');
         });
 }
 
-function populateAuthorDropdown() {
+function populateAuthorDropdown(selectId = '.author-select') {
     fetchAuthors()
         .then(authors => {
-            const authorDropdown = document.querySelector('.author-select');
+            const authorDropdown = document.querySelector(selectId);
             authorDropdown.innerHTML = authors.map(author => `<option value="${author.id}">${author.firstName} ${author.lastName}</option>`).join('');
         });
 }
