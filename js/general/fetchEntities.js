@@ -47,7 +47,7 @@ function fetchUser(userID) {
 }
 
 function fetchImageForProduct(product) {
-    makeRequest(`http://localhost:8080/product/image/${product.id}`, 'GET')
+    makeRequest(`http://localhost:8080/image/${product.id}`, 'GET')
         .then(response => handleHTTPErrors(response))
         .then(response => response.blob())
         .then(blob => setSrcOfImgFromBlob(blob, `productImage-${product.id}`))
