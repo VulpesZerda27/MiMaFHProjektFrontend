@@ -9,7 +9,6 @@ function createUserHeaders() {
                 <th>Admin rights</th>
     `;
 }
-
 function createProductHeaders() {
     return `
                 <th id="idHeader" entity-type="product">ID</th>
@@ -22,7 +21,6 @@ function createProductHeaders() {
                 <th>Actions</th>
     `;
 }
-
 function createCategoryHeaders() {
     return `
                 <th id="idHeader" entity-type="category">ID</th>
@@ -30,7 +28,6 @@ function createCategoryHeaders() {
                 <th>Actions</th>
     `;
 }
-
 function createAuthorHeaders() {
     return `
                 <th id="idHeader" entity-type="author">ID</th>
