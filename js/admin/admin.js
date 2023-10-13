@@ -269,6 +269,8 @@ document.querySelector('.close-modal').addEventListener('click', function() {
 function closeImageModal(){
     const modal = document.getElementById('imageModal');
     modal.style.display = "none";
+    const imgElement = document.getElementById(`productImage`);
+    imgElement.src = "";
 }
 
 document.getElementById('uploadButton').addEventListener('click', function() {

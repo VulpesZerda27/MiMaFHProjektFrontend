@@ -18,7 +18,7 @@ $("#login-button").on("click", function (event) {
 
     loginUser({
         email: $("#username-login").val(),
-        password: $("#password-login").val(),
+        password: $("#password-login").val()
     })
         .catch(error => console.error("Failed to login user:", error));
 });
