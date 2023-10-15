@@ -10,10 +10,14 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
     <link href="/css/bootstrap.css" rel="stylesheet"> <!-- here css stylesheet is being included-->
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js" defer></script>
-    <script src="../js/admin/adminPageVisibility.js" type="module" defer></script>
-    <script src="../js/products/fetchProducts.js" defer></script>
-    <script src="../js/products/createRow.js" defer></script>
-    <script src="../js/products/products.js" defer></script>
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous" defer></script>
+    <script src="../js/general/global.js" defer></script>
+    <script src="../js/general/fetchEntities.js" defer></script>
+    <script src="../js/admin/createRows.js" defer></script>
+    <script src="../js/products.js" defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-success">
@@ -58,7 +62,7 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             Wählen Sie eine Kategorie aus:
         </button>
-        <ul class="dropdown-menu" aria-labelledby="categoryDropdown" id="categoryDropdownList">
+        <ul class="dropdown-menu" aria-labelledby="categoryDropdown" id="category-dropdown">
 
         </ul>
     </div>
