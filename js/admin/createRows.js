@@ -91,6 +91,22 @@ function createProductInputRow() {
 }
 
 function createProductPageRow(product) {
+    const token = localStorage.getItem('accessToken');
+    let displayType = 'none';
+    if (token) {
+        try {
+            const decoded = jwt_decode(token);
+            console.log(decoded);
+            if (decoded.authorities && decoded.authorities.includes('USER')) {
+                displayType = 'block';
+            } else {
+                displayType = 'none';
+            }
+        } catch (error) {
+            console.error("Error decoding token", error);
+            displayType = 'none';
+        }
+    }
     return `
         <tr>
             <td>
@@ -102,6 +118,7 @@ function createProductPageRow(product) {
             <td>${product.price}</td>
             <td>${product.category.name}</td>
             <td>${product.author.firstName} ${product.author.lastName}</td>
+            <td><button class="btn btn-primary add-to-basket-btn" style="display: ${displayType};" data-id="${product.id}">Add to Basket</button></td>
         </tr>
     `;
 }

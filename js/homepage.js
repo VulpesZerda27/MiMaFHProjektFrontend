@@ -8,6 +8,14 @@ function populateProducts(products) {
             })
     });
     document.querySelector('#product-table tbody').insertAdjacentHTML('beforeend', productRows);
+
+    const addToBasketButtons = document.querySelectorAll('.add-to-basket-btn');
+
+    addToBasketButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            handleAddToBasket(e);
+        });
+    });
 }
 
 $(document).ready(function() {

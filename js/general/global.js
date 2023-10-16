@@ -100,4 +100,25 @@ function userLoggedInVisibility(){
     }
 }
 
-document.addEventListener("DOMContentLoaded", adminLoggedInVisibility);
+function handleAddToBasket(e) {
+    const productId = e.target.getAttribute('data-id');
+    const token = localStorage.getItem('accessToken');
+    let sub;
+    if (token) {
+        const payload = getPayloadFromToken(token);
+        sub = payload.sub;
+    }
+    makeRequest(`http://localhost:8080/user/basket/${sub}/${productId}`, "POST")
+        .then(handleHTTPErrors)
+        .then(alert("Product added to Basket!"));
+}
+
+function getPayloadFromToken(token) {
+    const payload = token.split('.')[1];
+    const decodedPayload = atob(payload);
+    return JSON.parse(decodedPayload);
+}
+
+document.addEventListener("DOMContentLoaded", function (){
+    adminLoggedInVisibility();
+});

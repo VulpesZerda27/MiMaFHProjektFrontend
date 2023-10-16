@@ -21,6 +21,14 @@ function populateProducts(products) {
             })
     });
     document.querySelector('#filtered-products tbody').insertAdjacentHTML('beforeend', productRows);
+
+    const addToBasketButtons = document.querySelectorAll('.add-to-basket-btn');
+
+    addToBasketButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            handleAddToBasket(e);
+        });
+    });
 }
 
 function filterProductsByCategory(products, category) {

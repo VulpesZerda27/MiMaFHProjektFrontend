@@ -1,9 +1,3 @@
-function getPayloadFromToken(token) {
-    const payload = token.split('.')[1];
-    const decodedPayload = atob(payload);
-    return JSON.parse(decodedPayload);
-}
-
 function fetchBasketItems() {
     const token = localStorage.getItem('accessToken');
     let sub;
@@ -24,7 +18,7 @@ function populateBasket(basketItems) {
     basketItems.map(basketItem => {
         fetchImageForProduct(basketItem.product)
             .then(blob => {
-                const imgElement = document.getElementById(`productImage-${basketItem.id}`);
+                const imgElement = document.getElementById(`productImage-${basketItem.product.id}`);
                 setSrcOfImgFromBlob(blob, imgElement);
             })
     });
