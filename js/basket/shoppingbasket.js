@@ -26,7 +26,7 @@ function populateBasket(basketItems) {
 
     let totalPrice = 0;
     basketItems.forEach(basketItem => {
-        totalPrice += basketItem.product.price;
+        totalPrice += basketItem.product.price * basketItem.quantity;
     })
 
     let totalPriceRow = createTotalPriceRow(totalPrice);
