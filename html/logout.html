@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Logout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../js/logout.js" defer></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-success">
+<nav class="navbar navbar-expand-lg bg-secondary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-info" href="../index.html">BookoMaT</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-info" href="products.html">Produkte</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-info" href="signup.html">Registrierung</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-info" href="login.html">Login</a>
+        </li>
+        <li class="nav-item" style="display: none;">
+          <a class="nav-link text-info" href="admin.html">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-info" href="../html/shoppingbasket.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+          </a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" id="logout-button" style="margin-right: 10px; margin-left: 5px;">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">You're logged out now</h4>
+    <p>Thank you for using our services. You have been successfully logged out.</p>
+    <hr>
+    <p class="mb-0">Click <a href="login.html">here</a> to log in again.</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center text-white bg-secondary bottom mt-auto" style="background-color: #3f51b5">
+
+  <!-- Grid container -->
+  <div class="container">
+    <!-- Section: Links -->
+    <!-- Grid row-->
+    <div class="row align-items-center d-flex justify-content-center p-3">
+
+      <!-- Grid column -->
+      <div class="col">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="help.html" class="text-info fw-bold">Hilfe</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="impressum.html" class="text-info fw-bold">Impressum</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div
+          class="text-center p-2 text-info"
+          style="background-color: rgba(0, 0, 0, 0.2)"
+  >
+    © 2023 Copyright: DiMiMa
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" defer></script>
+</body>
+
+</html>
