@@ -3,7 +3,7 @@ async function logoutUser() {
     const token = localStorage.getItem("accessToken");
     try {
         // Send a GET request to the backend's logout endpoint to invalidate the session/token
-        await makeRequest(window.BACKEND_URL + "/auth/logout", "GET", null, {
+        await makeRequest(window.LOGOUT_ENDPOINT, "GET", null, {
             Authorization: `Bearer ${token}`
         });
 
@@ -14,7 +14,7 @@ async function logoutUser() {
         console.log("Logged out successfully");
 
         // Redirect the user to the logout page or any other appropriate page
-        window.location.href = "/logout";
+        window.location.href = "../html/logout.html";
     } catch (error) {
         // Error message for failed logout
         console.error("Failed to logout user:", error);
