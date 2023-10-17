@@ -17,17 +17,11 @@
     <script src="./js/admin/createRows.js" defer></script>
     <script src="./js/general/fetchEntities.js" defer></script>
     <script src="./js/homepage.js" defer></script>
+    <script src="./js/logout.js" defer></script>
     <style>
         body {
             margin-left: 1cm; /* Set the left margin to 3 centimeters */
             margin-right: 1cm;
-        }
-        .product {
-            margin-bottom: 200px;
-        }
-        .table-image {
-            width: 100px; /* Set the desired width of the images */
-            height: auto; /* Maintain aspect ratio */
         }
     </style>
 </head>
@@ -61,6 +55,9 @@
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                         </svg>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="logout-button" style="margin-right: 10px; margin-left: 5px;">Logout</button>
                 </li>
             </ul>
         </div>
