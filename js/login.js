@@ -8,7 +8,7 @@ async function loginUser(user){
             console.log("Logged in", data);
             if (data.accessToken) {
                 localStorage.setItem("accessToken", data.accessToken);
-//                window.location.href = "/";
+                window.location.href = "/";
             }
         })
 }

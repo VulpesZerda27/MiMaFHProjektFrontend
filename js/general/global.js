@@ -93,10 +93,38 @@ function adminLoggedInVisibility() {
 }
 
 function userLoggedInVisibility(){
+    const logoutNavItem = document.querySelector("#logout-button").parentNode;
+    const shoppingBasketNavItem = document.querySelector(".nav-item a[href*='shoppingbasket.html']").parentNode;
+    const loginNavItem = document.querySelector(".nav-item a[href*='login.html']").parentNode;
+    const signupNavItem = document.querySelector(".nav-item a[href*='signup.html']").parentNode;
     const token = localStorage.getItem('accessToken');
 
-    if(token){
-
+    if (token) {
+        try {
+            const decoded = jwt_decode(token);
+            if (decoded.authorities && decoded.authorities.includes('USER')) {
+                logoutNavItem.style.display = 'block';
+                shoppingBasketNavItem.style.display = 'block';
+                loginNavItem.style.display = 'none';
+                signupNavItem.style.display = 'none';
+            } else {
+                logoutNavItem.style.display = 'none';
+                shoppingBasketNavItem.style.display = 'none';
+                loginNavItem.style.display = 'block';
+                signupNavItem.style.display = 'block';
+            }
+        } catch (error) {
+            console.error("Error decoding token", error);
+            logoutNavItem.style.display = 'none';
+            shoppingBasketNavItem.style.display = 'none';
+            loginNavItem.style.display = 'block';
+            signupNavItem.style.display = 'block';
+        }
+    } else {
+        logoutNavItem.style.display = 'none';
+        shoppingBasketNavItem.style.display = 'none';
+        loginNavItem.style.display = 'block';
+        signupNavItem.style.display = 'block';
     }
 }
 
@@ -121,4 +149,5 @@ function getPayloadFromToken(token) {
 
 document.addEventListener("DOMContentLoaded", function (){
     adminLoggedInVisibility();
+    userLoggedInVisibility();
 });
