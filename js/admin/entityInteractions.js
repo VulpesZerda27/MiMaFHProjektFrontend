@@ -1,5 +1,6 @@
 function createUser(data) {
-    makeRequest(window.BACKEND_URL + "/user", "POST", data)
+    makeRequest(window.USER_ENDPOINT, "POST", data)
+        .then(handleHTTPErrors)
         .then(userData => {
             console.log('User created successfully:', userData);
             // Refresh the data or update the UI as necessary
@@ -11,6 +12,7 @@ function createUser(data) {
 }
 function createProduct(data) {
     makeRequest(window.PRODUCT_ENDPOINT, "POST", data)
+        .then(handleHTTPErrors)
         .then(productData => {
             console.log('Product created successfully:', productData);
             populateProductSectionOfAdminDashboard();
@@ -21,6 +23,7 @@ function createProduct(data) {
 }
 function createCategory(data) {
     makeRequest(window.CATEGORY_ENDPOINT, "POST", data)
+        .then(handleHTTPErrors)
         .then(categoryData => {
             console.log('Category created successfully:', categoryData);
             populateCategorySectionOfAdminDashboard();
@@ -31,6 +34,7 @@ function createCategory(data) {
 }
 function createAuthor(data) {
     makeRequest(window.AUTHOR_ENDPOINT, "POST", data)
+        .then(handleHTTPErrors)
         .then(authorData => {
             console.log('Author created successfully:', authorData);
             populateAuthorSectionOfAdminDashboard();
@@ -41,7 +45,8 @@ function createAuthor(data) {
 }
 
 function updateUser(id, data) {
-    return makeRequest(`${window.BACKEND_URL}/admin/user/${id}`, "PUT", data)
+    return makeRequest(`${window.USER_ENDPOINT}/${id}`, "PUT", data)
+        .then(handleHTTPErrors)
         .then(userData => {
             console.log('User updated successfully:', userData);
             populateUserSectionOfAdminDashboard();
@@ -53,6 +58,7 @@ function updateUser(id, data) {
 
 function updateProduct(id, data) {
     return makeRequest(`${window.PRODUCT_ENDPOINT}/${id}`, "PUT", data)
+        .then(handleHTTPErrors)
         .then(productData => {
             console.log('Product updated successfully:', productData);
             populateProductSectionOfAdminDashboard();
@@ -64,6 +70,7 @@ function updateProduct(id, data) {
 
 function updateCategory(id, data) {
     return makeRequest(`${window.CATEGORY_ENDPOINT}/${id}`, "PUT", data)
+        .then(handleHTTPErrors)
         .then(categoryData => {
             console.log('Category updated successfully:', categoryData);
             populateCategorySectionOfAdminDashboard();
@@ -75,6 +82,7 @@ function updateCategory(id, data) {
 
 function updateAuthor(id, data) {
     return makeRequest(`${window.AUTHOR_ENDPOINT}/${id}`, "PUT", data)
+        .then(handleHTTPErrors)
         .then(authorData => {
             console.log('Author updated successfully:', authorData);
             populateAuthorSectionOfAdminDashboard();
@@ -86,6 +94,7 @@ function updateAuthor(id, data) {
 
 function deleteEntity(entityType, entityId) {
     makeRequest(`${window[entityType.toUpperCase() + '_ENDPOINT']}/${entityId}`, 'DELETE')
+        .then(handleHTTPErrors)
         .then(data => {
             populateEntitySectionOfAdminDashboard(entityType);
         });
@@ -103,6 +112,7 @@ function uploadImageForProduct(file) {
         },
         body: formData
     })
+        .then(handleHTTPErrors)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

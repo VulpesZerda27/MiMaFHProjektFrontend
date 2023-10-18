@@ -24,7 +24,8 @@ function makeRequest(url, method, data) {
 function handleHTTPErrors(response) {
     if (response.ok) return response;
 
-    return response.json().then(errorData => {
+    else {
+        let errorData = response.json();
         let errorMessage = "";
         switch (response.status) {
             case 400:
@@ -39,6 +40,12 @@ function handleHTTPErrors(response) {
             case 404:
                 errorMessage = "Not Found. The resource you're looking for doesn't exist.";
                 break;
+            case 409:
+                errorMessage = "Database constraint failed.";
+                break;
+            case 410:
+                errorMessage = "Email already registered.";
+                break;
             case 500:
                 errorMessage = "Internal Server Error.";
                 break;
@@ -46,14 +53,13 @@ function handleHTTPErrors(response) {
                 errorMessage = "An unknown error occurred.";
                 break;
         }
+        alert(errorMessage);
 
-        // Attach any server-sent error messages
         if (errorData && errorData.message) {
             errorMessage += ` Details: ${errorData.message}`;
         }
-
         throw new Error(errorMessage);
-    });
+    }
 }
 
 function isTokenExpired(token) {
@@ -136,7 +142,7 @@ function handleAddToBasket(e) {
         const payload = getPayloadFromToken(token);
         sub = payload.sub;
     }
-    makeRequest(`http://localhost:8080/user/basket/${sub}/${productId}`, "POST")
+    makeRequest(`${window.BASKETITEM_ENDPOINT}/${sub}/${productId}`, "POST")
         .then(handleHTTPErrors)
         .then(alert("Product added to Basket!"));
 }

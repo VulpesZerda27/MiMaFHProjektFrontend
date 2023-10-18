@@ -1,53 +1,53 @@
 function fetchProducts() {
-    return makeRequest("http://localhost:8080/product", 'GET')
+    return makeRequest(window.PRODUCT_ENDPOINT, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchProduct(productID) {
-    return makeRequest(`http://localhost:8080/product/${productID}`, 'GET')
+    return makeRequest(`${window.PRODUCT_ENDPOINT}/${productID}`, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchCategories() {
-    return makeRequest("http://localhost:8080/category", 'GET')
+    return makeRequest(window.CATEGORY_ENDPOINT, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchCategory(categoryID) {
-    return makeRequest(`http://localhost:8080/category/${categoryID}`, 'GET')
+    return makeRequest(`${window.CATEGORY_ENDPOINT}/${categoryID}`, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchAuthors() {
-    return makeRequest("http://localhost:8080/bookAuthor", 'GET')
+    return makeRequest(window.AUTHOR_ENDPOINT, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchAuthor(authorID) {
-    return makeRequest(`http://localhost:8080/bookAuthor/${authorID}`, 'GET')
+    return makeRequest(`${window.AUTHOR_ENDPOINT}/${authorID}`, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchUsers() {
-    return makeRequest("http://localhost:8080/admin/user", 'GET')
+    return makeRequest(window.USER_ENDPOINT, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchUser(userID) {
-    return makeRequest(`http://localhost:8080/user/${userID}`, 'GET')
+    return makeRequest(`${window.USER_ENDPOINT}/${userID}`, 'GET')
         .then(handleHTTPErrors)
         .then(response => response.json())
 }
 
 function fetchImageForProduct(product) {
-    return makeRequest(`http://localhost:8080/image/${product.id}`, 'GET')
+    return makeRequest(`${window.IMAGE_ENDPOINT}/${product.id}`, 'GET')
         .then(response => handleHTTPErrors(response))
         .then(response => response.blob())
         .catch(error => {

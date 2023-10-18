@@ -115,7 +115,7 @@ function createProductPageRow(product) {
                 </a>
             </td>
             <td>${product.name}</td>
-            <td>${product.price}</td>
+            <td>${product.price}€</td>
             <td>${product.category.name}</td>
             <td>${product.author.firstName} ${product.author.lastName}</td>
             <td><button class="btn btn-primary add-to-basket-btn" style="display: ${displayType};" data-id="${product.id}">Add to Basket</button></td>
