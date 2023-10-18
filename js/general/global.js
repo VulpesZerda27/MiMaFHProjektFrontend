@@ -30,30 +30,35 @@ function handleHTTPErrors(response) {
         switch (response.status) {
             case 400:
                 errorMessage = "Bad Request";
+                alert(errorMessage);
                 break;
             case 401:
                 errorMessage = "Unauthorized. Please check your credentials.";
+                alert(errorMessage);
                 break;
             case 403:
                 errorMessage = "Forbidden. You don't have permission to access this.";
+                alert(errorMessage);
                 break;
             case 404:
                 errorMessage = "Not Found. The resource you're looking for doesn't exist.";
                 break;
             case 409:
                 errorMessage = "Database constraint failed.";
+                alert(errorMessage);
                 break;
             case 410:
                 errorMessage = "Email already registered.";
+                alert(errorMessage);
                 break;
             case 500:
                 errorMessage = "Internal Server Error.";
+                alert(errorMessage);
                 break;
             default:
                 errorMessage = "An unknown error occurred.";
                 break;
         }
-        alert(errorMessage);
 
         if (errorData && errorData.message) {
             errorMessage += ` Details: ${errorData.message}`;
