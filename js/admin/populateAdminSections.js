@@ -92,7 +92,6 @@ function populateAuthorSectionHeaders() {
 function populateCategoryDropdown(selectId = '.category-select') {
     fetchCategories()
         .then(categories => {
-            console.log(categories);
             const categoryDropdown = document.querySelector(selectId);
             categoryDropdown.innerHTML = categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join('');
         });

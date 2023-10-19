@@ -18,8 +18,10 @@ function populateBasket(basketItems) {
     basketItems.map(basketItem => {
         fetchImageForProduct(basketItem.product)
             .then(blob => {
-                const imgElement = document.getElementById(`productImage-${basketItem.product.id}`);
-                setSrcOfImgFromBlob(blob, imgElement);
+                const smallImgElement = document.getElementById(`productImageSmall-${basketItem.product.id}`);
+                setSrcOfImgFromBlob(blob, smallImgElement);
+                const largeImgElement = document.getElementById(`productImageLarge-${basketItem.product.id}`);
+                setSrcOfImgFromBlob(blob, largeImgElement);
             })
     });
     document.querySelector('#basket-items tbody').insertAdjacentHTML('beforeend', basketItemRows);
@@ -35,9 +37,9 @@ function populateBasket(basketItems) {
 
 function handleBasketItemUpdate(e) {
     const row = e.target.closest('tr');
-    const basketItemId = e.target.getAttribute('data-id'); // Extract the basketItem.id
-    const quantityInput = row.querySelector('.quantity-input');
-    const quantity = quantityInput.value;
+    const basketItemId = e.target.getAttribute('data-id');
+    const quantityDropdown = row.querySelector('.quantity-select');
+    const quantity = quantityDropdown.options[quantityDropdown.selectedIndex].value;
 
     const shoppingBasketItemDTO = {
         id: parseInt(basketItemId),

@@ -69,6 +69,14 @@ function createProductDetailRow(product) {
                         </a>
                     </div>
                 </div>
+               
+                <div class="row">
+                    <div class="fw-bold" style="font-size: 1.2em;" >Kategorie: ${product.category.name}</div>
+                </div>
+                
+                <div class="row">
+                    <div class="fw-bold" style="font-size: 1.2em;" >Autor: ${product.author.firstName} ${product.author.lastName}</div>
+                </div>
                 
                 <div class="" >${product.description}</div>
                 

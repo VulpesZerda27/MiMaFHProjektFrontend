@@ -140,6 +140,14 @@ function createProductPageRow(product) {
                     </div>
                 </div>
                 
+                <div class="row">
+                    <div class="" style="font-size: 1.2em;" >Kategorie: ${product.category.name}</div>
+                </div>
+                
+                <div class="row">
+                    <div class="" style="font-size: 1.2em;" >Autor: ${product.author.firstName} ${product.author.lastName}</div>
+                </div>
+                
                 <!-- Add to Basket Button Below the Image -->
                 <div class="row mt-2">
                     <div class="col px-2">

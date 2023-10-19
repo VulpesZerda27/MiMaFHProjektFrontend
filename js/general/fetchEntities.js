@@ -57,6 +57,5 @@ function fetchImageForProduct(product) {
 
 function setSrcOfImgFromBlob(blob, imgElement){
     const blobUrl = URL.createObjectURL(blob);
-    console.log(blobUrl);
     imgElement.src = blobUrl;
 }
