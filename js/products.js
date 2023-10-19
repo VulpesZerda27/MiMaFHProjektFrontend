@@ -16,8 +16,10 @@ function populateProducts(products) {
     products.map(product => {
         fetchImageForProduct(product)
             .then(blob => {
-                const imgElement = document.getElementById(`productImage-${product.id}`);
-                setSrcOfImgFromBlob(blob, imgElement);
+                const smallImgElement = document.getElementById(`productImageSmall-${product.id}`);
+                setSrcOfImgFromBlob(blob, smallImgElement);
+                const largeImgElement = document.getElementById(`productImageLarge-${product.id}`);
+                setSrcOfImgFromBlob(blob, largeImgElement);
             })
     });
     document.querySelector('#filtered-products tbody').insertAdjacentHTML('beforeend', productRows);
