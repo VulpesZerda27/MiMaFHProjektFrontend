@@ -96,10 +96,16 @@ function handleAdminRightsChange(e) {
         let updatedRoles = [];
 
         if (action === 'revoke') {
-            updatedRoles = user.roles.filter(role => role !== 'ADMIN');
+            updatedRoles = user.roles.map(role => role.name).filter(roleName => roleName !== 'ADMIN');
         } else if (action === 'grant') {
-            updatedRoles = [...user.roles, 'ADMIN'];
+            const roleNames = user.roles.map(role => role.name);
+            if (!roleNames.includes('ADMIN')) {
+                updatedRoles = [...roleNames, 'ADMIN'];
+            } else {
+                updatedRoles = roleNames;
+            }
         }
+
 
         user.roles = updatedRoles;
 
@@ -194,6 +200,7 @@ function handleEntityEdit(btn, row) {
                 cell.innerHTML =`<select class="author-edit-select"> </select>`;
                 populateAuthorDropdown('.author-edit-select');
             }
+            else if(headerName == 'password'){}
             else{
                 const inputValue = cell.textContent.trim();
                 cell.innerHTML = `<input type="text" value="${inputValue}" class="form-control">`;

@@ -13,9 +13,8 @@ async function loginUser(user){
         })
 }
 
-$("#login-button").on("click", function (event) {
+document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
     loginUser({
         email: $("#username-login").val(),
         password: $("#password-login").val()

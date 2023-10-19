@@ -3,7 +3,7 @@ function escapeJsonAttributes(jsonString) {
 }
 
 function getAdminRightsButton(user) {
-    if (user.roles.includes('ADMIN')) {
+    if (user.roles.some(role => role.name === 'ADMIN')) {
         return `<button class="btn btn-danger btn-sm admin-rights-btn" data-id="${user.id}" data-action="revoke">Revoke</button>`;
     } else {
         return `<button class="btn btn-secondary btn-sm admin-rights-btn" data-id="${user.id}" data-action="grant">Grant</button>`;
