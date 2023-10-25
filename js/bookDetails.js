@@ -40,9 +40,9 @@ function createProductDetailRow(product) {
             <td class="d-none d-md-table-cell fw-bold" style="font-size: 1.2em;">${product.name}</td>
             
             <!-- Image for Large Screens -->
-            <td class="d-none d-md-table-cell">
+            <td class="d-none d-md-table-cell" style="vertical-align: top;">
                 <a href="../html/booksinglepage.html?id=${product.id}">
-                    <img src="" class="img-fluid rounded" style="height: 300px; object-fit: contain; " id="productImageLarge-${product.id}" alt="">
+                    <img src="" class="img-fluid rounded" style="height: 350px; object-fit: contain; " id="productImageLarge-${product.id}" alt="">
                 </a>
             </td>
 
@@ -52,6 +52,7 @@ function createProductDetailRow(product) {
             <!-- Category and Author for Large Screens -->
             <td class="d-none d-md-table-cell fw-bold" style="font-size: 1.2em;">${product.category.name}</td>
             <td class="d-none d-md-table-cell fw-bold" style="font-size: 1.2em;">${product.author.firstName} ${product.author.lastName}</td>
+            <td class="d-none d-md-table-cell" style="font-size: 1.2em; width:500px; word-wrap:break-word;">${product.description}</td>
             
             <!-- Layout for Small Screens -->
             <td class="d-md-none">
